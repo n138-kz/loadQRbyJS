@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="./style.css" rel="stylesheet">
+		<script src="./jquery-3.3.1.min.js" charset="utf-8"></script>
+		<script src="./qr_packed.js"></script>
+		<script type="text/javascript">
+			function openQRCamera(node) {
+				var reader = new FileReader();
+				reader.onload = function() {
+					node.value = "";
+					qrcode.callback = function(res) {
+						if(res instanceof Error) {
+							alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
+						} else {
+							$("#loadedtext").val(res);
+						}
+					};
+					qrcode.decode(reader.result);
+				};
+				reader.readAsDataURL(node.files[0]);
+			}
+		</script>
+	</head>
+	<body>
+		<form method="post" name="loadqr">
+			<textarea id="loadedtext"></textarea><br>
+			<input type="file" onchange="openQRCamera(this)" accept="image/*" capture="environment" />
+		</form>
+	</body>
+</html>
