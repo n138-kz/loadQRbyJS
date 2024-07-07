@@ -36,8 +36,9 @@
 							}
 							meta[3]  = `${meta[2].h}:${meta[2].m}:${meta[2].s}`;
 							meta[4]  = `${meta[3]} ${res}`;
+							console.log(meta);
 							output.innerText = meta[4];
-							document.querySelector('#loadedtext').appendChild(output);
+							document.querySelector('#output').appendChild(output);
 						}
 					};
 					qrcode.decode(reader.result);
