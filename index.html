@@ -31,8 +31,8 @@
 							}
 							meta[2]  = {
 								h: meta[0].getHours(),
-								m: ('00'+meta[1].m),
-								s: ('00'+meta[1].s),
+								m: ('00'+meta[1].m).substr(-2),
+								s: ('00'+meta[1].s).substr(-2),
 							}
 							meta[3]  = `${meta[2].h}:${meta[2].m}:${meta[2].s}`;
 							meta[4]  = `${meta[3]} ${res}`;
