@@ -21,6 +21,23 @@
 							alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
 						} else {
 							document.querySelector('#loadedtext').value = res;
+							let output = null;
+							output = document.createElement('p');
+							let meta = [new Date()];
+							meta[1]  = {
+								h: meta[0].getHours(),
+								m: meta[0].getMinutes(),
+								s: meta[0].getSeconds(),
+							}
+							meta[2]  = {
+								h: meta[0].getHours(),
+								m: ('00'+meta[1].m),
+								s: ('00'+meta[1].s),
+							}
+							meta[3]  = `${meta[2].h}:${meta[2].m}:${meta[2].s}`;
+							meta[4]  = `${meta[3]} ${res}`;
+							output.innerText = meta[4];
+							document.querySelector('#loadedtext').appendChild(output);
 						}
 					};
 					qrcode.decode(reader.result);
@@ -34,5 +51,6 @@
 			<textarea id="loadedtext"></textarea><br>
 			<input type="file" onchange="openQRCamera(this)" accept="image/*" capture="environment" />
 		</form>
+		<div id="output"></div>
 	</body>
 </html>
