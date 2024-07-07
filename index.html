@@ -15,7 +15,7 @@
 						if(res instanceof Error) {
 							alert("No QR code found. Please make sure the QR code is within the camera's frame and try again.");
 						} else {
-							$("#loadedtext").val(res);
+							document.querySelector('#loadedtext').value = res;
 						}
 					};
 					qrcode.decode(reader.result);
